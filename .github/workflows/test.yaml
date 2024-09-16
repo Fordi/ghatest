@@ -1,14 +1,22 @@
 name: test
 on:
   push:
-  pull_request:
 jobs:
   hello:
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     steps:
-      - if: github.event_name == 'pull_request'
-        run: echo "Yo, PR"
-      - if: github.event_name == 'push'
-        run: echo "Ugh, push it!"
-      
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          lfs: false
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/get-pr-id
+        id: pr_id
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - if: ${{ steps.pr_id.outputs.value == '' }}
+        run: "echo No PR"
+      - if: ${{ steps.pr_id.outputs.value != '' }}
+        run: "echo PR: ${{ steps.pr_id.outputs.value }}"
 

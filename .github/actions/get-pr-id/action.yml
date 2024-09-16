@@ -1,0 +1,28 @@
+name: 'Get PR ID'
+description: 'Get the PR ID from an event that is not a pull_request'
+inputs:
+  token:
+    description: 'secrets.GITHUB_TOKEN'
+    required: true
+outputs:
+  value:
+    description: 'PR ID, or blank if none'
+    value: ${{ steps.core.outputs.pr_id }}
+runs:
+  using: "composite"
+  steps:
+  - name: Get PR ID from branch name
+    shell: bash
+    id: core
+    env:
+      GH_TOKEN: ${{ inputs.token }}
+      BRANCH: ${{ github.head_ref || github.ref_name }}
+      REPO: ${{ github.repository }}
+    run: |
+        PR_ID="$(gh pr list -R "$REPO" -H "$BRANCH" --json number --jq '.[].number')"
+        if [[ -n $PR_ID ]]; then
+          echo "Push is to PR #${PR_ID}"
+        else
+          echo "Push is to non-PR branch: ${BRANCH}"
+        fi
+        echo "pr_id=$PR_ID" >> $GITHUB_OUTPUT
