@@ -1,5 +1,9 @@
 name: 'Get PR ID'
 description: 'Get the PR ID from an event that is not a pull_request'
+inputs:
+  token:
+    description: 'secrets.GITHUB_TOKEN'
+    required: true
 outputs:
   pr_id:
     description: 'PR ID, or blank if none'
@@ -12,4 +16,4 @@ runs:
     shell: bash
     id: core
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}

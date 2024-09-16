@@ -13,6 +13,8 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/get-pr-id
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - if: ${{ env.pr_id == '' }}
         run: "echo No PR"
       - if: ${{ env.pr_id != '' }}
