@@ -1,0 +1,15 @@
+name: 'Get PR ID'
+description: 'Get the PR ID from an event that is not a pull_request'
+outputs:
+  pr_id:
+    description: 'PR ID, or blank if none'
+    value: ${{ steps.core.outputs.pr_id }}
+runs:
+  using: "composite"
+  steps:
+  - name: Get PR ID from branch name
+    run: echo -n pr_id='"'"$(gh pr list -R ${{ github.repository }} -H ${{ github.head_ref || github.ref_name }} --json number --jq '.[].number')"'"' >> $GITHUB_OUTPUTS
+    shell: bash
+    id: core
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

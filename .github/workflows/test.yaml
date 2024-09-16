@@ -6,10 +6,15 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - run: gh
-      - if: github.event_name == 'pull_request'
-        run: echo "Pull request event"
-      - if: github.event_name == 'push'
-        run: echo "Push event"
-      
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          lfs: false
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/get-pr-id
+      - if: ${{ env.pr_id == '' }}
+        run: "echo No PR"
+      - if: ${{ env.pr_id != '' }}
+        run: "echo PR: ${{ env.pr_id }}"
 
