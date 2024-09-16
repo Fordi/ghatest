@@ -4,11 +4,12 @@ on:
   pull_request:
 jobs:
   hello:
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     steps:
+      - run: gh
       - if: github.event_name == 'pull_request'
-        run: echo "Yo, PR"
+        run: echo "Pull request event"
       - if: github.event_name == 'push'
-        run: echo "Ugh, push it!"
+        run: echo "Push event"
       
 
