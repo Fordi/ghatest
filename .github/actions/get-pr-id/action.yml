@@ -16,4 +16,4 @@ runs:
     shell: bash
     id: core
     env:
-      GH_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ inputs.token }}
