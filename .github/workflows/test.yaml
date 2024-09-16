@@ -1,0 +1,14 @@
+name: test
+on:
+  push:
+  pull_request:
+jobs:
+  hello:
+    runs-on: [self-hosted, linux]
+    steps:
+      - if: github.event_name == 'pull_request'
+        run: echo "Yo, PR"
+      - if: github.event_name == 'push'
+        run: echo "Ugh, push it!"
+      
+
