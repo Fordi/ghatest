@@ -12,10 +12,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/get-pr-id
+        id: pr_id
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - if: ${{ env.pr_id == '' }}
+      - if: ${{ steps.pr_id.outputs.value == '' }}
         run: "echo No PR"
-      - if: ${{ env.pr_id != '' }}
-        run: "echo PR: ${{ env.pr_id }}"
+      - if: ${{ steps.pr_id.outputs.value != '' }}
+        run: "echo PR: ${{ steps.pr_id.outputs.value }}"
 

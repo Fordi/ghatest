@@ -5,7 +5,7 @@ inputs:
     description: 'secrets.GITHUB_TOKEN'
     required: true
 outputs:
-  pr_id:
+  value:
     description: 'PR ID, or blank if none'
     value: ${{ steps.core.outputs.pr_id }}
 runs:
