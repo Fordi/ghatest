@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
   - name: Get PR ID from branch name
-    run: echo -n pr_id='"'"$(gh pr list -R ${{ github.repository }} -H ${{ github.head_ref || github.ref_name }} --json number --jq '.[].number')"'"' >> $GITHUB_OUTPUTS
+    run: echo -n pr_id='"'"$(gh pr list -R ${{ github.repository }} -H ${{ github.head_ref || github.ref_name }} --json number --jq '.[].number')"'"' >> $GITHUB_OUTPUT
     shell: bash
     id: core
     env:
