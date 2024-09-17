@@ -11,7 +11,7 @@ jobs:
           lfs: false
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: ./.github/actions/get-pr-id
+      - uses: cesiumgs/github-actions/get-pr-id@fordi/get-pr-id
         id: pr_id
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
