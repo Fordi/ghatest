@@ -1,0 +1,17 @@
+{
+  "name": "ghatest",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "doit": "doit.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^25.0.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7"
+  }
+}
