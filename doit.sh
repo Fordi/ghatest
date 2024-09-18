@@ -1,2 +1,4 @@
 #!/bin/bash
-npx tsx "$(dirname "$(realpath "$0")")/index.ts" "${@}"
+HERE="$(dirname "$(readlink "$0")")"
+echo "$HERE"
+npx tsx "$HERE/index.ts" "${@}"
