@@ -1,2 +1,2 @@
 #!/bin/bash
-npx tsx index.ts
+npx tsx "$(dirname "$0")/index.ts"
