@@ -1,3 +1,3 @@
 import { JSDOM } from "jsdom";
 
-console.log("Hello, world!", JSDOM.name, process.argv);
+console.log("Hello, branched world!", JSDOM.name, process.argv);
